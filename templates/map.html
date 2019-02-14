@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Map</title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(function(){
+            // Указывается идентификатор HTML-элемента.
+            var moscow_map = new ymaps.Map("first_map", {
+                center: [55.76, 37.64],
+                zoom: 10
+            });
+            // Ссылка на элемент.
+            // var piter_map = new ymaps.Map(document.getElementsByTagName('p')[2], {
+            //     center: [59.94, 30.32],
+            //     zoom: 9
+            // });
+            var loadingObjectManager = new ymaps.LoadingObjectManager('api?bbox=%b', {
+                // Включаем кластеризацию.
+                clusterize: true,
+                // Зададим опции кластерам.
+                // Опции кластеров задаются с префиксом cluster.
+                clusterHasBalloon: false,
+                // Опции объектов задаются с префиксом geoObject.
+                geoObjectOpenBalloonOnClick: false
+            });
+
+
+            moscow_map.geoObjects.add(loadingObjectManager);
+            // piter_map.geoObjects.add(loadingObjectManager);
+
+        });
+
+    </script>
+</head>
+<body>
+<p>Карта Москвы</p>
+<div id="first_map" style="width:800px; height:600px"></div>
+<!--
+<p>Карта Санкт-Петербурга</p>
+<p style="width:400px; height:200px"></p>
+-->
+</body>
+</html>
